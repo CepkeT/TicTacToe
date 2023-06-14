@@ -1,0 +1,19 @@
+﻿@{
+    ViewData["Title"] = "Данные игроков";
+}
+<style>
+    button {
+        margin-top: 10px;
+    }
+</style>
+
+<div class="text-center">
+    <h1 class="display-4">Данные игроков </h1>
+    <form method="post" asp-area="" asp-controller="Home" asp-action="StartGame">
+        <label>Игрок 1</label><br>
+        <input name="firstPlayerName"/><br>
+        <label>Игрок 2</label><br>
+        <input name="secondPlayerName"/><br>
+        <button>Начать игру</button>
+    </form>
+</div>

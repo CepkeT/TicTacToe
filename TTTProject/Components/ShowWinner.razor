@@ -1,0 +1,18 @@
+﻿<h3>@Winner</h3>
+
+@using TTTProject.Models
+
+@code {
+
+    [Parameter]
+    public GameDataModel GameData { set; get; }
+
+    string Winner => GameData.Winner switch
+    {
+        0 => "Ничья",
+        1 => $"Победил {GameData.FirstPlayer.Name}",
+        2 => $"Победил {GameData.SecondPlayer.Name}",
+        _ => ""
+    };
+
+}

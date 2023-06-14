@@ -1,0 +1,16 @@
+﻿@using TTTProject.HtmlHelpers
+@model GameDataModel
+
+@{
+    ViewData["Title"] = "Игра в крестики нолики";
+}
+
+<div class="text-center">
+    <h1 class="display-4">Ходит @Html.ShowPlayerName(Model) @if (!Model.IsMove) { @await Html.PartialAsync("FinishGame") }</h1>
+    <form method="post" asp-action="Index" asp-controller="Home">
+        @await Html.PartialAsync("Field", Model)
+        @Html.DataModel(Model)
+        <component type="typeof(TTTProject.Components.ShowWinner)" render-mode="Static" param-GameData="Model" />
+        <component type="typeof(TTTProject.Components.ControlButtons)" render-mode="Static" />
+    </form>
+</div>
