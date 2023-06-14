@@ -53,11 +53,11 @@ public class GameDataModel
         IsMove = true;
     }
 
-    void FillTheField()
+    private void FillTheField()
     {
         //заполнение поля 
-        Random random = new Random();
-        for (int i = 0; i < 9; i++)
+        var random = new Random();
+        for (var i = 0; i < 9; i++)
             Field[i] = (random.Next(0, 3) switch { 0 => "", 1 => "X", 2 => "O" });
 
         FieldString = string.Join(",", Field);
@@ -65,7 +65,7 @@ public class GameDataModel
         DeterminingWinner();
     }
 
-    void DeterminingWinner()
+    private void DeterminingWinner()
     {
         //проверяет все возможные выигрышные комбинации на игровом поле и устанавливает 
         //кто именно победил
@@ -74,12 +74,12 @@ public class GameDataModel
             new[] { 0, 1, 2 }, new[] { 3, 4, 5 }, new[] { 6, 7, 8 }, new[] { 0, 3, 6 }, new[] { 1, 4, 7 },
             new[] { 2, 5, 8 }, new[] { 0, 4, 8 }, new[] { 2, 4, 6 }
         };
-        for (var i = 0; i < combinations.Length; i++)
-            if (Field[combinations[i][0]] == Field[combinations[i][1]] &&
-                Field[combinations[i][0]] == Field[combinations[i][2]] && Field[combinations[i][0]] != "")
+        foreach (var t in combinations)
+            if (Field[t[0]] == Field[t[1]] &&
+                Field[t[0]] == Field[t[2]] && Field[t[0]] != "")
             {
                 IsMove = false;
-                Winner = Field[combinations[i][0]] == "X" ? 1 : 2;
+                Winner = Field[t[0]] == "X" ? 1 : 2;
                 return;
             }
 
